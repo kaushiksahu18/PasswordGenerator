@@ -4,7 +4,7 @@ import gsap from "gsap";
 import { Input } from "@/components/ui/input";
 import Option from "@/components/ui/option";
 import SliderPlus, { currentPassLength } from "@/components/ui/slider+";
-import ProgressPlus, { passStrenghState } from "@/components/ui/progress+";
+import ProgressPlus from "@/components/ui/progress+";
 import CopyBTN from "@/components/ui/copybtn";
 import { atom, useRecoilValue } from "recoil";
 import GeneratePassBTN from "./generatePassBTN";
@@ -14,7 +14,6 @@ import GeneratePassBTN from "./generatePassBTN";
 function App() {
   const canIncludeObj = useRecoilValue(canInclude);
   const passLength = useRecoilValue(currentPassLength);
-  const passStrength = useRecoilValue(passStrenghState);
 
   const mainRef = useRef<HTMLDivElement>(null);
 
@@ -85,7 +84,6 @@ function App() {
     </div>
   );
 }
-
 
 export const canInclude = atom({
   key: "canInclude",
