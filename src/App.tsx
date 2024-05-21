@@ -54,7 +54,7 @@ function App() {
         ref={mainRef}
       >
         <h1 className="bg-muted text-secondary-foreground text-center py-2">
-          Password Generator{passStrength.passStrength}
+          Password Generator
         </h1>
         <div id="container" className="flex flex-col justify-center gap-4">
           <div className="relative">
