@@ -66,9 +66,20 @@ const generatePassword = (props: passGeneratorPeramsTypesa) => {
       getANumberChar,
       getASpecialChar,
     ];
-    let num = Math.floor(Math.random() * getCharFuncs.length);
-    let temp = getCharFuncs[num]();
-    finalPassword += temp;
+    let num: number = -1;
+    while (optionsArr.length && true) {
+      num = Math.floor(Math.random() * getCharFuncs.length);
+      if (optionsArr.includes(num)) {
+        break;
+      }
+    }
+    try{
+      let temp = getCharFuncs[num]();
+      finalPassword += temp;
+    }catch(err){
+      finalPassword += "atleast select one";
+      break;
+    }
   }
   props.setPassValue(finalPassword);
   switch (optionsArr.length) {
