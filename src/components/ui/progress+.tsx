@@ -25,11 +25,11 @@ function ProgressPlus({
     if (progressRef && progressRef.current) {
       progressRef?.current.addEventListener("mouseenter", () => {
         if (mouse_follower) {
-          mouse_follower.innerHTML = passStrength;
+          mouse_follower.innerHTML = "strength";
           mouse_follower.classList.add(passStrengthColor);
           gsap.to(mouse_follower, {
-            width: "60px",
-            height: "60px",
+            width: "80px",
+            height: "80px",
             duration: 0.2,
           });
         }

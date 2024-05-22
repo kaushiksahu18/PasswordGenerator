@@ -1,12 +1,10 @@
 import React from "react";
 import { Slider } from "@/components/ui/slider";
 import gsap from "gsap";
-import { atom, useRecoilState } from "recoil";
+import { atom, useRecoilValue, useSetRecoilState } from "recoil";
 
 function SliderPlus() {
-  const [passLength, setPassLength] = useRecoilState<string | null>(
-    currentPassLength
-  );
+  const setPassLength = useSetRecoilState(currentPassLength);
 
   React.useEffect(() => {
     const slThumb = document.getElementById("SliderPrimitiveThumb");
@@ -33,10 +31,17 @@ function SliderPlus() {
       onValueChange={(value) => setPassLength(String(value[0]))}
       className="hover:cursor-grab active:cursor-grabbing"
     >
-      <div className="w-[150%] h-[150%] bg-primary text-xs rounded-full flex justify-center items-center text-center absolute -translate-y-[140%] -translate-x-[10%]">
-        {passLength}
-      </div>
+      <Showlength />
     </Slider>
+  );
+}
+
+function Showlength() {
+  const passLength = useRecoilValue(currentPassLength);
+  return (
+    <div className="w-[150%] h-[150%] bg-primary text-xs rounded-full flex justify-center items-center text-center absolute -translate-y-[140%] -translate-x-[10%]">
+      {passLength}
+    </div>
   );
 }
 

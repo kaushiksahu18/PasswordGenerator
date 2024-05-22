@@ -1,9 +1,8 @@
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { atom, useRecoilValue, useSetRecoilState } from "recoil";
 
 import { canInclude } from "@/App";
 import { currentPassLength } from "@/components/ui/slider+";
 import { passStrenghState } from "@/components/ui/progress+";
-import { inputValue } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 type passGeneratorPeramsTypesa = {
@@ -59,24 +58,23 @@ const generatePassword = (props: passGeneratorPeramsTypesa) => {
     optionsArr = optionsArr.filter((item) => item !== false);
   }
 
-  for (let i = 0; i < Number(props.passLength); i++) {
-    const getCharFuncs = [
-      getAUpperCaseAlphabaticChar,
-      getLowerCaseAlphabaticChar,
-      getANumberChar,
-      getASpecialChar,
-    ];
-    let num: number = -1;
-    while (optionsArr.length && true) {
-      num = Math.floor(Math.random() * getCharFuncs.length);
-      if (optionsArr.includes(num)) {
-        break;
-      }
+  let temp = 0;
+  const tempOptionArr = [...optionsArr];
+  for (let i = 0; i < optionsArr.length; i++) {
+    let num = getRandomeIndex(tempOptionArr);
+    const index = tempOptionArr.indexOf(num);
+    if (index > -1) {
+      tempOptionArr.splice(index, 1);
     }
-    try{
-      let temp = getCharFuncs[num]();
+    finalPassword += getCharFuncs[Number(num)]();
+    temp++;
+  }
+
+  for (let i = temp; i < Number(props.passLength); i++) {
+    try {
+      let temp = getCharFuncs[getRandomeIndex(optionsArr)]();
       finalPassword += temp;
-    }catch(err){
+    } catch (error) {
       finalPassword += "atleast select one";
       break;
     }
@@ -110,6 +108,25 @@ const generatePassword = (props: passGeneratorPeramsTypesa) => {
   }
 };
 
+function getRandomeIndex(arr: (number | false)[]): number {
+  let num = -1;
+  let length = arr.length;
+
+  while (length) {
+    num = Math.floor(Math.random() * length);
+    if (arr[num] !== undefined) {
+      return Number(arr[num]);
+    }
+    return -1;
+  }
+  return num;
+}
+
+export const inputValue = atom({
+  key: "inputValue",
+  default: "",
+});
+
 function getASpecialChar() {
   const SpecialCharArr = `!@#$^&*_?`.split("");
   const randomIndex = Math.floor(Math.random() * SpecialCharArr.length);
@@ -130,5 +147,10 @@ function getANumberChar() {
   const randomIndex = Math.floor(Math.random() * NumberArr.length);
   return NumberArr[randomIndex];
 }
-
+const getCharFuncs = [
+  getAUpperCaseAlphabaticChar,
+  getLowerCaseAlphabaticChar,
+  getANumberChar,
+  getASpecialChar,
+];
 export default GeneratePassBTN;

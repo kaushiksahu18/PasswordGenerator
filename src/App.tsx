@@ -1,11 +1,10 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
-import { Input } from "@/components/ui/input";
 import Option from "@/components/ui/option";
 import SliderPlus, { currentPassLength } from "@/components/ui/slider+";
 import ProgressPlus from "@/components/ui/progress+";
-import CopyBTN from "@/components/ui/copybtn";
+import InputPlus from "@/components/ui/input+";
 import { atom, useRecoilValue } from "recoil";
 import GeneratePassBTN from "./generatePassBTN";
 
@@ -56,10 +55,7 @@ function App() {
           Password Generator
         </h1>
         <div id="container" className="flex flex-col justify-center gap-4">
-          <div className="relative">
-            <Input />
-            <CopyBTN />
-          </div>
+          <InputPlus />
           <div className="mt-6 mb-3 flex items-center gap-2 w-full">
             <SliderPlus />
             <div className="group text-center px-2 text-sm py-1 bg-primary rounded-lg text-primary-foreground w-1/3">

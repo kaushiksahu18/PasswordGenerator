@@ -3,12 +3,14 @@ import { useEffect } from "react";
 import { useRecoilValue } from "recoil";
 import gsap from "gsap";
 
-import { inputValue } from "@/components/ui/input";
+import { Input } from "@/components/ui/input";
+import { inputValue } from "@/generatePassBTN";
 
-function CopyBTN() {
-  const generatedPassworg = useRecoilValue(inputValue);
+function InputPlus() {
+  const currentPass = useRecoilValue(inputValue);
+
+  const copy_button = document.getElementById("copy-button");
   useEffect(() => {
-    const copy_button = document.getElementById("copy-button");
     const mouse_follower = document.getElementById("mouse-follower");
     copy_button?.addEventListener("mouseenter", () => {
       if (mouse_follower) {
@@ -30,16 +32,20 @@ function CopyBTN() {
       }
     });
     copy_button?.addEventListener("click", async () => {
-      const text = generatedPassworg;
+      const text = currentPass;
       await navigator.clipboard.writeText(text);
     });
-  }, []);
+  }, [currentPass]);
+
   return (
-    <CopyPlus
-      id="copy-button"
-      className="w-[5%] absolute right-2 top-1/2 -translate-y-1/2 hover:text-primary"
-    />
+    <div className="relative">
+      <Input defaultValue={currentPass} />
+      <CopyPlus
+        id="copy-button"
+        className="w-[5%] absolute right-2 top-1/2 -translate-y-1/2 hover:text-primary"
+      />
+    </div>
   );
 }
 
-export default CopyBTN;
+export default InputPlus;
