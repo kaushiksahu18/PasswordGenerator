@@ -39,7 +39,7 @@ function InputPlus() {
 
   return (
     <div className="relative">
-      <Input defaultValue={currentPass} />
+      <Input defaultValue={currentPass} readOnly />
       <CopyPlus
         id="copy-button"
         className="w-[5%] absolute right-2 top-1/2 -translate-y-1/2 hover:text-primary"

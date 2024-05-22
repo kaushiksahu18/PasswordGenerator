@@ -7,6 +7,7 @@ import ProgressPlus from "@/components/ui/progress+";
 import InputPlus from "@/components/ui/input+";
 import { atom, useRecoilValue } from "recoil";
 import GeneratePassBTN from "./generatePassBTN";
+import GithubLinkRepo from "@/components/ui/githublink";
 
 // hover:shadow-[0_0_90px_1px_#6D28D9]
 
@@ -77,6 +78,7 @@ function App() {
           <GeneratePassBTN />
         </div>
       </div>
+      <GithubLinkRepo/>
     </div>
   );
 }
