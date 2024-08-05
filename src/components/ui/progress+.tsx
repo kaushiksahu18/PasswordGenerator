@@ -64,7 +64,7 @@ function ProgressPlus({
 export const passStrenghState = atom({
   key: "passStrenghState", // unique ID (with respect to other atoms/selectors)
   default: {
-    passStrength: "week",
+    passStrength: "weak",
     passStrengthColor: "bg-primary",
   }, // default value (aka initial value)
 });
