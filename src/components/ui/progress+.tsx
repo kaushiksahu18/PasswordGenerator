@@ -55,7 +55,7 @@ function ProgressPlus({
       indicatorColor={`${
         Number(passLength) >= 8 ? passStrengthColor : "bg-primary"
       }`}
-      indicatorText={`${Number(passLength) >= 8 ? passStrength : "week"}`}
+      indicatorText={`${Number(passLength) >= 8 ? passStrength : "weak"}`}
       className={`w-full text-[white] ${className}`}
     />
   );
